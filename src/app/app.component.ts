@@ -45,6 +45,6 @@ export class AppComponent {
     if (!id) return;
     basketItem.quantity
       ? this.restaurantService.putBasketItem(basketItem, id).subscribe()
-      : this.restaurantService.deleteBasketItem(id);
+      : this.restaurantService.deleteBasketItem(id).subscribe();
   }
 }

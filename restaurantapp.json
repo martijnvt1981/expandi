@@ -110,17 +110,5 @@
     }
   ],
   "basket": [
-    {
-      "quantity": 4,
-      "dishId": "5",
-      "dishPrice": 29.99,
-      "id": "94f6"
-    },
-    {
-      "id": "6891",
-      "quantity": 1,
-      "dishId": "7",
-      "dishPrice": 12.99
-    }
   ]
 }
