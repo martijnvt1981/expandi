@@ -10,5 +10,5 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasketShortcutComponent {
-  @Input() quantity = 0;
+  @Input() totalItems = 0;
 }
