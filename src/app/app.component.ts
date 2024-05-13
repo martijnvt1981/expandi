@@ -7,6 +7,7 @@ import { AsyncPipe } from '@angular/common';
 import { BasketItem } from './data/restaurant/restaurant.model';
 import { BannerComponent } from './banner/banner.component';
 import { BasketShortcutComponent } from './basket-shortcut/basket-shortcut.component';
+import { switchMap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -29,9 +30,12 @@ export class AppComponent {
   constructor(private readonly restaurantService: RestaurantService) {}
 
   handleAddItemClick(basketItem: BasketItem): void {
-    this.restaurantService.postBasketItem(basketItem).subscribe((data) => {
-      this.setBasketState(data);
-    });
+    this.restaurantService
+      .postBasketItem(basketItem)
+      .pipe(switchMap(() => this.restaurantService.getBasket()))
+      .subscribe((data) => {
+        this.setBasketState(data);
+      });
   }
 
   handleModifyItemClick(basketItem: BasketItem): void {
@@ -42,12 +46,16 @@ export class AppComponent {
     basketItem.quantity
       ? this.restaurantService
           .putBasketItem(basketItem, matchedId)
+          .pipe(switchMap(() => this.restaurantService.getBasket()))
           .subscribe((data) => {
             this.setBasketState(data);
           })
-      : this.restaurantService.deleteBasketItem(matchedId).subscribe((data) => {
-          this.setBasketState(data);
-        });
+      : this.restaurantService
+          .deleteBasketItem(matchedId)
+          .pipe(switchMap(() => this.restaurantService.getBasket()))
+          .subscribe((data) => {
+            this.setBasketState(data);
+          });
   }
 
   setBasketState(data: BasketItem[]): void {

@@ -2,8 +2,6 @@
   <app-banner class="mb-3"></app-banner>
   <app-nav class="mb-4"></app-nav>
 
-  <router-outlet></router-outlet>
-
   <div class="container-dishes">
     @if(dishes$ | async; as dishes) { @for(dish of dishes; track dish.id) {
     <app-dish
