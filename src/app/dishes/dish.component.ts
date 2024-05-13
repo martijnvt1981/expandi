@@ -15,14 +15,26 @@ import { BasketItem, Dish } from '../data/restaurant/restaurant.model';
 })
 export class DishComponent {
   @Input() contents?: Dish;
+  quantity = 0;
 
   addItemClick = output<BasketItem>();
+  modifyItemClick = output<BasketItem>();
 
-  handleAddToCartButton({ quantity, dishId, dishPrice }: BasketItem): void {
+  handleButtonClick({ quantity, dishId, dishPrice }: BasketItem): void {
     this.addItemClick.emit({
       quantity,
       dishId,
       dishPrice,
     });
+    this.quantity = quantity;
+  }
+
+  handleModifyButtonClick({ quantity, dishId, dishPrice }: BasketItem) {
+    this.modifyItemClick.emit({
+      quantity,
+      dishId,
+      dishPrice,
+    });
+    this.quantity = quantity;
   }
 }

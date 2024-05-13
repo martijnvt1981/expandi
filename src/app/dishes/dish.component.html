@@ -20,10 +20,11 @@
           {{ contents.description }}
         </p>
         <ul class="dish-actions">
+          @if (!quantity) {
           <li>
             <button
               (click)="
-                handleAddToCartButton({
+                handleButtonClick({
                   quantity: 1,
                   dishId: contents.id,
                   dishPrice: contents.price
@@ -35,6 +36,37 @@
               Add to cart
             </button>
           </li>
+          } @if (quantity) {
+          <li>
+            <button
+              type="button"
+              class="btn btn-decrement"
+              (click)="
+                handleModifyButtonClick({
+                  quantity: quantity - 1,
+                  dishId: contents.id,
+                  dishPrice: contents.price
+                })
+              "
+            >
+              -
+            </button>
+            <span class="quantity">{{ quantity }}</span>
+            <button
+              type="button"
+              class="btn btn-increment"
+              (click)="
+                handleModifyButtonClick({
+                  quantity: quantity + 1,
+                  dishId: contents.id,
+                  dishPrice: contents.price
+                })
+              "
+            >
+              +
+            </button>
+          </li>
+          }
           <li class="price">€ {{ contents.price }}</li>
         </ul>
       </div>

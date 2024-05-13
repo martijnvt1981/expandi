@@ -1,7 +1,7 @@
 export type Category = 'Burgers' | 'Steaks';
 
 export interface Dish {
-  id: number;
+  id: string;
   name: string;
   description: string;
   image: string;
@@ -11,7 +11,8 @@ export interface Dish {
 }
 
 export interface BasketItem {
-  dishId: number;
+  dishId: string;
   dishPrice: number;
   quantity: number;
+  id?: string;
 }

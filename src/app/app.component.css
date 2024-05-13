@@ -4,27 +4,6 @@
   border-radius: var(--app-border-radius) var(--app-border-radius) 0 0;
 }
 
-.banner {
-  border-radius: var(--app-border-radius);
-  padding-inline: 0.625rem;
-  padding-block-start: 3.75rem;
-  padding-block-end: 1.25rem;
-  background-color: black;
-  display: flex;
-}
-
-.logo {
-  border-radius: var(--app-border-radius);
-}
-
-.payoff {
-  align-self: end;
-  margin-left: 1.25rem;
-  font-weight: 700;
-  font-size: 2rem;
-  color: white;
-}
-
 .container-dishes {
   padding-inline: 0.625rem;
   display: grid;

@@ -1,24 +1,18 @@
 <div class="container-xl container-overview">
-  <div class="banner mb-3">
-    <img
-      alt="Logo restaurant"
-      class="logo"
-      height="120"
-      src="assets/images/logo.png"
-      width="120"
-    />
-    <h2 class="payoff">Kitchen. Meat house</h2>
-  </div>
-
+  <app-banner class="mb-3"></app-banner>
   <app-nav class="mb-4"></app-nav>
+
+  <router-outlet></router-outlet>
 
   <div class="container-dishes">
     @if(dishes$ | async; as dishes) { @for(dish of dishes; track dish.id) {
     <app-dish
       [contents]="dish"
       (addItemClick)="handleAddItemClick($event)"
+      (modifyItemClick)="handleModifyItemClick($event)"
     ></app-dish>
     } }
   </div>
 </div>
-<router-outlet></router-outlet>
+
+<app-basket-shortcut [quantity]="quantity"></app-basket-shortcut>

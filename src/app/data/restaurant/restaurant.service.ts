@@ -21,10 +21,23 @@ export class RestaurantService {
     return this.httpClient.get<BasketItem[]>(`http://localhost:3000/basket`);
   }
 
-  postBasket(body: BasketItem): Observable<BasketItem> {
+  postBasketItem(body: BasketItem): Observable<BasketItem> {
     return this.httpClient.post<BasketItem>(
       `http://localhost:3000/basket`,
       body
+    );
+  }
+
+  putBasketItem(body: BasketItem, id: string): Observable<BasketItem> {
+    return this.httpClient.put<BasketItem>(
+      `http://localhost:3000/basket/${id}`,
+      body
+    );
+  }
+
+  deleteBasketItem(id: string): Observable<BasketItem> {
+    return this.httpClient.delete<BasketItem>(
+      `http://localhost:3000/basket/${id}`
     );
   }
 }
