@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  Input,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgbActiveOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-basket',
@@ -9,4 +15,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './basket.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BasketComponent {}
+export class BasketComponent {
+  activeOffcanvas = inject(NgbActiveOffcanvas);
+  @Input() name = '';
+}
