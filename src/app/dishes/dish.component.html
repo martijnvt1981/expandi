@@ -1,0 +1,44 @@
+<div class="card card-dish">
+  <div class="row g-0">
+    @if (contents) {
+    <div class="col-md-4">
+      <img
+        [alt]="'Image ' + contents.name"
+        [src]="contents.image"
+        class="img-fluid img-dish"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <div class="card-title-container">
+          <h3 class="card-title card-title-dish">{{ contents.name }}</h3>
+          <button class="btn" type="button">
+            <i class="bi bi-info-circle"></i>
+          </button>
+        </div>
+        <p class="card-text">
+          {{ contents.description }}
+        </p>
+        <ul class="dish-actions">
+          <li>
+            <button
+              (click)="
+                handleAddToCartButton({
+                  quantity: 1,
+                  dishId: contents.id,
+                  dishPrice: contents.price
+                })
+              "
+              class="btn btn-dark"
+              type="button"
+            >
+              Add to cart
+            </button>
+          </li>
+          <li class="price">€ {{ contents.price }}</li>
+        </ul>
+      </div>
+    </div>
+    }
+  </div>
+</div>

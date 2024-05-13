@@ -1,0 +1,16 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.min.css';
+@import '@fontsource/poppins/index.css';
+
+:root {
+  --app-border-radius: 0.75rem;
+  --app-background-color: #f7f7f7;
+  --app-border: 1px solid #ebe7e7;
+  --app-color-black: #12131a;
+}
+
+body {
+  font-family: 'Poppins';
+  padding-block-start: 3.125rem;
+  background-color: beige;
+}

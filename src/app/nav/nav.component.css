@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.nav-overview {
+  padding-inline: 0.625rem;
+}
+
+.search-overview {
+  margin-inline-start: auto;
+  display: flex;
+
+  input {
+    background-color: var(--app-background-color);
+    border-radius: var(--app-border-radius);
+  }
+
+  button {
+    margin-inline-start: -3.125rem;
+  }
+}
