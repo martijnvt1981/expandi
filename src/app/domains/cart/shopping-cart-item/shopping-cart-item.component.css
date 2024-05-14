@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+.card {
+  border: var(--app-border);
+  background-color: var(--app-background-color);
+  border-radius: var(--app-border-radius);
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.actions {
+  padding-inline-start: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.quantity {
+  margin-inline-start: auto;
+}
+
+.total {
+  color: var(--app-color-orange);
+  font-weight: 600;
+}

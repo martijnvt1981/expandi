@@ -1,4 +1,5 @@
 :host {
+  display: block;
 }
 
 .card-dish {
@@ -42,20 +43,7 @@
 }
 
 .price {
-  color: var(--app-color-black);
   font-weight: 600;
   font-size: 1.125rem;
   margin-inline-start: 1rem;
-}
-
-.btn-decrement {
-  background-color: var(--app-background-color);
-}
-
-.btn-increment {
-  background-color: var(--app-background-color);
-}
-
-.quantity {
-  margin-inline: 0.625rem;
 }

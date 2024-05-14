@@ -3,7 +3,7 @@
     @if (contents) {
     <div class="col-md-4">
       <img
-        [alt]="'Image ' + contents.name"
+        [alt]="contents.name"
         [src]="contents.image"
         class="img-fluid img-dish"
       />
@@ -25,9 +25,7 @@
             <button
               (click)="
                 handleButtonClick({
-                  quantity: 1,
-                  dishId: contents.id,
-                  dishPrice: contents.price
+                  quantity: 1
                 })
               "
               class="btn btn-dark"
@@ -38,33 +36,19 @@
           </li>
           } @if (quantity) {
           <li>
-            <button
-              type="button"
-              class="btn btn-decrement"
-              (click)="
+            <app-quantity
+              [quantity]="quantity"
+              (decrementButtonClick)="
                 handleModifyButtonClick({
-                  quantity: quantity - 1,
-                  dishId: contents.id,
-                  dishPrice: contents.price
+                  quantity: quantity - 1
                 })
               "
-            >
-              -
-            </button>
-            <span class="quantity">{{ quantity }}</span>
-            <button
-              type="button"
-              class="btn btn-increment"
-              (click)="
+              (incrementButtonClick)="
                 handleModifyButtonClick({
-                  quantity: quantity + 1,
-                  dishId: contents.id,
-                  dishPrice: contents.price
+                  quantity: quantity + 1
                 })
               "
-            >
-              +
-            </button>
+            ></app-quantity>
           </li>
           }
           <li class="price">€ {{ contents.price }}</li>

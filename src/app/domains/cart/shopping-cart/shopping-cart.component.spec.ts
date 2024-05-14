@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BasketShortcutComponent } from './basket-shortcut.component';
+import { ShoppingCartComponent } from './shopping-cart.component';
 
-describe('BasketShortcutComponent', () => {
-  let component: BasketShortcutComponent;
-  let fixture: ComponentFixture<BasketShortcutComponent>;
+describe('BasketComponent', () => {
+  let component: ShoppingCartComponent;
+  let fixture: ComponentFixture<ShoppingCartComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BasketShortcutComponent],
+      imports: [ShoppingCartComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BasketShortcutComponent);
+    fixture = TestBed.createComponent(ShoppingCartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

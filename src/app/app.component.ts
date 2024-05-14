@@ -1,23 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { DishComponent } from './dishes/dish.component';
-import { NavComponent } from './nav/nav.component';
 import { RestaurantService } from './data/restaurant/restaurant.service';
 import { AsyncPipe } from '@angular/common';
-import { BasketItem } from './data/restaurant/restaurant.model';
-import { BannerComponent } from './banner/banner.component';
-import { BasketShortcutComponent } from './basket-shortcut/basket-shortcut.component';
-import { switchMap } from 'rxjs';
+import { ShoppingCartItem } from './data/restaurant/restaurant.model';
+import { ShoppingCartStateService } from './shared/shopping-cart-state/shopping-cart-state.service';
+import { DishComponent } from './domains/overview/dishes/dish.component';
+import { BannerComponent } from './domains/overview/banner/banner.component';
+import { ShoppingCartShortcutComponent } from './domains/cart/shopping-cart-shortcut/shopping-cart-shortcut.component';
+import { NavComponent } from './domains/overview/nav/nav.component';
 
 @Component({
   standalone: true,
   imports: [
-    RouterModule,
     DishComponent,
     NavComponent,
     AsyncPipe,
     BannerComponent,
-    BasketShortcutComponent,
+    ShoppingCartShortcutComponent,
+    BannerComponent,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -26,43 +25,41 @@ import { switchMap } from 'rxjs';
 export class AppComponent {
   dishes$ = this.restaurantService.getDishes();
   totalItems = 0;
-  basketContents: BasketItem[] = [];
-  constructor(private readonly restaurantService: RestaurantService) {}
+  constructor(
+    private readonly restaurantService: RestaurantService,
+    private readonly shoppingCartStateService: ShoppingCartStateService
+  ) {}
 
-  handleAddItemClick(basketItem: BasketItem): void {
+  handleAddItemClick(ShoppingCartItem: ShoppingCartItem): void {
     this.restaurantService
-      .postBasketItem(basketItem)
-      .pipe(switchMap(() => this.restaurantService.getBasket()))
-      .subscribe((data) => {
-        this.setBasketState(data);
+      .postShoppingCartItem(ShoppingCartItem)
+      .subscribe(() => {
+        this.totalItems = this.shoppingCartStateService.getState().totalItems;
       });
   }
 
-  handleModifyItemClick(basketItem: BasketItem): void {
-    const matchedId = this.basketContents.find(
-      (dish) => dish.dishId === basketItem.dishId
-    )?.id;
+  handleModifyItemClick(ShoppingCartItem: ShoppingCartItem): void {
+    const matchedId = this.getMatchingId(ShoppingCartItem);
     if (!matchedId) return;
-    basketItem.quantity
+    ShoppingCartItem.quantity
       ? this.restaurantService
-          .putBasketItem(basketItem, matchedId)
-          .pipe(switchMap(() => this.restaurantService.getBasket()))
-          .subscribe((data) => {
-            this.setBasketState(data);
+          .putShoppingCartItem(ShoppingCartItem, matchedId)
+          .subscribe(() => {
+            this.totalItems =
+              this.shoppingCartStateService.getState().totalItems;
           })
       : this.restaurantService
-          .deleteBasketItem(matchedId)
-          .pipe(switchMap(() => this.restaurantService.getBasket()))
-          .subscribe((data) => {
-            this.setBasketState(data);
+          .deleteShoppingCartItem(matchedId)
+          .subscribe(() => {
+            this.totalItems =
+              this.shoppingCartStateService.getState().totalItems;
           });
   }
 
-  setBasketState(data: BasketItem[]): void {
-    this.basketContents = data;
-    this.totalItems = this.basketContents.reduce(
-      (accumulator, { quantity }) => accumulator + quantity,
-      0
-    );
+  getMatchingId(ShoppingCartItem: ShoppingCartItem): string | undefined {
+    return this.shoppingCartStateService
+      .getState()
+      .shoppingCartItems.find((dish) => dish.dishId === ShoppingCartItem.dishId)
+      ?.id;
   }
 }

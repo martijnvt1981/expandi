@@ -109,30 +109,5 @@
       "popular": true
     }
   ],
-  "basket": [
-    {
-      "id": "4f5d",
-      "quantity": 1,
-      "dishId": "1",
-      "dishPrice": 11.99
-    },
-    {
-      "id": "631d",
-      "quantity": 1,
-      "dishId": "2",
-      "dishPrice": 13.99
-    },
-    {
-      "quantity": 3,
-      "dishId": "4",
-      "dishPrice": 25.99,
-      "id": "4fd3"
-    },
-    {
-      "id": "4b57",
-      "quantity": 1,
-      "dishId": "6",
-      "dishPrice": 16.99
-    }
-  ]
+  "basket": []
 }

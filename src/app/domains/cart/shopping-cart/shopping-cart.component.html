@@ -1,0 +1,53 @@
+<div class="offcanvas-header">
+  <h3 class="offcanvas-title">Your order</h3>
+  <button
+    (click)="activeOffcanvas.dismiss('Cross click')"
+    aria-label="Close"
+    class="btn btn-closing"
+    type="button"
+  >
+    <i class="bi bi-x-circle"></i>
+  </button>
+</div>
+<div class="offcanvas-body">
+  @if(shoppingCart$ | async; as items) { @for(item of items; track item.id) {
+  <app-shopping-cart-item
+    [contents]="item"
+    (modifyItemClick)="handleModifyItemClick($event)"
+    class="mb-2"
+  ></app-shopping-cart-item>
+  }
+  <table class="table mb-3">
+    <tbody>
+      <tr>
+        <th scope="row">Subtotal</th>
+        <td class="table-cell-costs">€ {{ totalPrice }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Delivery fee</th>
+        <td class="table-cell-costs">€ {{ deliveryFee }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Total</th>
+        <td class="table-cell-costs">
+          € {{ totalPrice + deliveryFee | number : '1.0-2' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button
+    (click)="activeOffcanvas.close()"
+    class="btn btn-primary mb-2"
+    type="button"
+  >
+    Order (€ {{ totalPrice + deliveryFee | number : '1.0-2' }})
+  </button>
+  <button
+    (click)="activeOffcanvas.dismiss()"
+    class="btn btn-secondary"
+    type="button"
+  >
+    Continue shopping
+  </button>
+  }
+</div>

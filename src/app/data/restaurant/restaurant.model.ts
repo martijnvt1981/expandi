@@ -10,9 +10,10 @@ export interface Dish {
   popular: boolean;
 }
 
-export interface BasketItem {
+export interface ShoppingCartItem {
   dishId: string;
   dishPrice: number;
+  dishName: string;
   quantity: number;
   id?: string;
 }
