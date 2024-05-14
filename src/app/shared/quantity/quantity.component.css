@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.btn-decrement {
+  background-color: #ebe7e7;
+}
+
+.btn-increment {
+  background-color: #ebe7e7;
+}
+
+.quantity {
+  margin-inline: 0.625rem;
+}

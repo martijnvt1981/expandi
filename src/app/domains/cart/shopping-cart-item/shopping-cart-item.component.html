@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-body">
+    @if(contents) {
+    <h3 class="card-title">{{ contents.dishName }}</h3>
+    <p class="card-text">Price per item € {{ contents.dishPrice }}</p>
+    <ul class="actions">
+      <li class="total">Total: {{ total }}</li>
+      <li class="quantity">
+        <app-quantity
+          (decrementButtonClick)="
+            handleModifyButtonClick({
+              quantity: contents.quantity - 1
+            })
+          "
+          (incrementButtonClick)="
+            handleModifyButtonClick({
+              quantity: contents.quantity + 1
+            })
+          "
+          [quantity]="contents.quantity"
+        ></app-quantity>
+      </li>
+    </ul>
+    }
+  </div>
+</div>
